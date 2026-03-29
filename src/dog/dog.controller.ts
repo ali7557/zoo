@@ -1,20 +1,18 @@
 import { Controller, Get } from '@nestjs/common';
-import { DogService } from './dog.service';
+import { CatService } from './cat.service'; // 1. Import the CatService
 
-@Controller('dog')
-export class DogController {
-    @Controller('cat')
-    export class CatController {
-    constructor(private readonly dogService: DogService) {}
-    
-    
-    @Get()
-    public getHello(): string{
-        return this.dogService.getHello();
-    }
-    
-    @Get('greet')
-    public introduce(): string{
-        return this.dogService.introduce();
-    }
+@Controller('cat')
+export class CatController {
+  // 2. Inject the CatService here
+  constructor(private readonly catService: CatService) {}
+
+  @Get()
+  public getHello(): string {
+    return this.catService.getHello(); // This returns "MYEW"
+  }
+  
+  @Get('greet')
+  public introduce(): string {
+    return this.catService.introduce(); // This returns "My name is TOM!"
+  }
 }
